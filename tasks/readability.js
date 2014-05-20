@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 		'Enforce 80 column max line width',
 	function () {
 
-		var errorLines = [];
+		var errorLines = [], filesScanned = 0;
 
 		// Iterate over all specified file groups.
 		this.files.forEach(function (file) {
@@ -34,6 +34,8 @@ module.exports = function (grunt) {
 			}).map(function (filePath) {
 				var contents = grunt.file.read(filePath),
 					linesArray = contents.trim().split("\n");
+
+				filesScanned += 1;
 
 				linesArray.forEach(function (line, index) {
 					if (line.length > 80) {
@@ -65,7 +67,7 @@ module.exports = function (grunt) {
 
 		grunt.log.ok(
 			'Column width check passed: ' +
-			this.files.length +
+			filesScanned +
 			' file(s)'
 		);
 
