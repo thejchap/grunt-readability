@@ -1,0 +1,41 @@
+{
+  "name": "grunt-column-lint",
+  "description": "Scans files for lines over 80 columns wide",
+  "version": "0.1.0",
+  "homepage": "https://github.com/justinchapman/grunt-column-lint",
+  "author": {
+    "name": "Justin Chapman",
+    "email": "commonmodestudio@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/justinchapman/grunt-column-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/justinchapman/grunt-column-lint/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/justinchapman/grunt-column-lint/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
