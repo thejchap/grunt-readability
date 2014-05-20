@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 		'Enforce 80 column max line width',
 	function () {
 
-		var errorFiles = [];
+		var errorLines = [];
 
 		// Iterate over all specified file groups.
 		this.files.forEach(function (file) {
@@ -33,30 +33,31 @@ module.exports = function (grunt) {
 				} else { return true; }
 			}).map(function (filePath) {
 				var contents = grunt.file.read(filePath),
-					linesArray = contents.trim().split("\n"),
-					foundError = false;
+					linesArray = contents.trim().split("\n");
 
-				linesArray.forEach(function (line) {
-					if (line.length > 80 && foundError === false) {
-						foundError = true;
-						errorFiles.push(filePath);
+				linesArray.forEach(function (line, index) {
+					if (line.length > 80) {
+						errorLines.push({
+							path: filePath,
+							lineNumber: index + 1
+						});
 					}
 				});
 
 			});
 		});
 
-		if (errorFiles.length > 0) {
+		if (errorLines.length > 0) {
 			grunt.log.error(
-				errorFiles.length +
+				errorLines.length +
 				" files contain lines over 80 columns wide"
 			);
 
 			grunt.log.writeln(" ");
-			grunt.log.writeln("Invalid files:");
+			grunt.log.writeln("Invalid lines:");
 
-			errorFiles.forEach(function (filePath) {
-				grunt.log.errorlns(filePath);
+			errorLines.forEach(function (error) {
+				grunt.log.error(error.path + ": Line " + error.lineNumber);
 			});
 
 			return false;
