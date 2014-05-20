@@ -8,43 +8,66 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+	// Please see the Grunt documentation for more information regarding task
+	// creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerMultiTask('column_lint', 'Scans files for lines over 80 columns wide', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
+	grunt.registerMultiTask(
+		'column_lint',
+		'Enforce 80 column max line width',
+	function () {
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+		var errorFiles = [];
 
-      // Handle options.
-      src += options.punctuation;
+		// Iterate over all specified file groups.
+		this.files.forEach(function (file) {
+			var contents = file.src.filter(function (filepath) {
+				if (!grunt.file.exists(filepath)) {
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+					grunt.log.warn(
+						"Source file '" + filepath + "' not found."
+					);
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
-  });
+					return false;
+				} else { return true; }
+			}).map(function (filePath) {
+				var contents = grunt.file.read(filePath),
+					linesArray = contents.trim().split("\n"),
+					foundError = false;
+
+				linesArray.forEach(function (line) {
+					if (line.length > 80 && foundError === false) {
+						foundError = true;
+						errorFiles.push(filePath);
+					}
+				});
+
+			});
+		});
+
+		if (errorFiles.length > 0) {
+			grunt.log.error(
+				errorFiles.length +
+				" files contain lines over 80 columns wide"
+			);
+
+			grunt.log.writeln(" ");
+			grunt.log.writeln("Invalid files:");
+
+			errorFiles.forEach(function (filePath) {
+				grunt.log.errorlns(filePath);
+			});
+
+			return false;
+		}
+
+		grunt.log.ok(
+			'Column width check passed: ' +
+			this.files.length +
+			' file(s)'
+		);
+
+	});
 
 };
