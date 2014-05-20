@@ -1,7 +1,7 @@
 {
   "name": "grunt-column-lint",
   "description": "Scans files for lines over 80 columns wide",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/justinchapman/grunt-column-lint",
   "author": {
     "name": "Justin Chapman",
