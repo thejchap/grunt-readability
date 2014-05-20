@@ -1,23 +1,23 @@
 {
-  "name": "grunt-column-lint",
+  "name": "grunt-readability",
   "description": "Scans files for lines over 80 columns wide",
   "version": "0.2.0",
-  "homepage": "https://github.com/justinchapman/grunt-column-lint",
+  "homepage": "https://github.com/justinchapman/grunt-readability",
   "author": {
     "name": "Justin Chapman",
     "email": "commonmodestudio@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/justinchapman/grunt-column-lint.git"
+    "url": "git://github.com/justinchapman/grunt-readability.git"
   },
   "bugs": {
-    "url": "https://github.com/justinchapman/grunt-column-lint/issues"
+    "url": "https://github.com/justinchapman/grunt-readability/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/justinchapman/grunt-column-lint/blob/master/LICENSE-MIT"
+      "url": "https://github.com/justinchapman/grunt-readability/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
@@ -31,6 +31,7 @@
     "grunt": "~0.4.5"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "readability"
   ]
 }

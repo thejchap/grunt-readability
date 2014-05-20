@@ -1,5 +1,5 @@
 /*
- * grunt-column-lint
+ * grunt-readability
  * https://github.com/justinchapman/grunt-column-lint
  *
  * Copyright (c) 2014 Justin Chapman
@@ -14,7 +14,7 @@ module.exports = function (grunt) {
 	// creation: http://gruntjs.com/creating-tasks
 
 	grunt.registerMultiTask(
-		'column_lint',
+		'readability',
 		'Enforce 80 column max line width',
 	function () {
 
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
 		if (errorLines.length > 0) {
 			grunt.log.error(
 				errorLines.length +
-				" files contain lines over 80 columns wide"
+				" lines over 80 columns wide"
 			);
 
 			grunt.log.writeln(" ");

@@ -1,5 +1,5 @@
 /*
- * grunt-column-lint
+ * grunt-readability
  * https://github.com/justinchapman/grunt-column-lint
  *
  * Copyright (c) 2014 Justin Chapman
@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 			options: { jshintrc: '.jshintrc' }
 		},
 
-		column_lint: {
+		readability: {
 			all: { files: { src: ["tasks/**/*.js"] } },
 			test: { files: { src: ["test/fixtures/invalid.js"] } }
 		}
