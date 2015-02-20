@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                 } else { return true; }
 			}).map(function (filePath) {
 				var contents = grunt.file.read(filePath),
-					linesArray = contents.trim().split("\n");
+					linesArray = contents.trim().split(/\r?\n/);
 
 				filesScanned += 1;
 
