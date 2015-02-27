@@ -18,9 +18,7 @@ module.exports = function (grunt) {
 		'Enforce 80 column max line width',
 	function () {
 
-		var errorLines = [],
-            filesScanned = 0,
-            exclude = this.data.files.exclude || [];
+		var errorLines = [], filesScanned = 0;
 
 		// Iterate over all specified file groups.
 		this.files.forEach(function (file) {
@@ -32,9 +30,7 @@ module.exports = function (grunt) {
 					);
 
 					return false;
-				} else if () {
-
-                } else { return true; }
+				} else { return true; }
 			}).map(function (filePath) {
 				var contents = grunt.file.read(filePath),
 					linesArray = contents.trim().split(/\r?\n/);
@@ -42,7 +38,7 @@ module.exports = function (grunt) {
 				filesScanned += 1;
 
 				linesArray.forEach(function (line, index) {
-					if (line.length > 80 && exclude.indexOf(filePath) === -1) {
+					if (line.length > 80) {
 						errorLines.push({
 							path: filePath,
 							lineNumber: index + 1
