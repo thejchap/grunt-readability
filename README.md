@@ -24,8 +24,7 @@ grunt.initConfig({
   readability: {
     all: {
       files: {
-        src: ["src/**/*.js"],
-        exclude : ["src/exclude_this.js"]
+        src: ["src/**/*.js"]
       }
     }
   },
